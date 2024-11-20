@@ -1,4 +1,5 @@
 import Image from "next/image";
+import HeaderMenu from "@/components/headerMenu"
 
 export default function Home() {
   return (
