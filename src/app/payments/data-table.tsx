@@ -12,16 +12,18 @@ import {
   getFilteredRowModel,
   VisibilityState,
 } from "@tanstack/react-table"
-import {
-  DropdownMenu,DropdownMenuCheckboxItem,
-  DropdownMenuContent,DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
+import SideFilter from "@/components/side-filter"
+import NewDocument from "@/components/modal-new-document"
+
 import{
   Table,TableBody,TableCell,
   TableHead,TableHeader,TableRow,
 } from "@/components/ui/table"
+
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import {SelectMenus } from "@/components/select-menus"
+import { Search,Filter } from 'lucide-react';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -52,44 +54,48 @@ export function DataTable<TData, TValue>({
       columnVisibility,rowSelection,
     },
   })
+  const titles = [
+    {
+      title: "Origem do documento",
+      options: ["Interno", "Externo", "Oficial/Governamental"],
+    },
+    { title: "Tipo Documental", options: ["Relatório", "Contrato", "Fatura"] },
+  ];
 
   return (
     <div>
+        <div className="md:flex md:items-center md:justify-between md:space-x-5">
+      <div className="flex items-start space-x-5">
+        <div className="pt-1.5">
+          <h1 className="text-2xl font-bold text-gray-900">Documentos</h1>
+          <p className="text-md font-medium text-gray-500">
+            Crie, gerencie e visulize os documentos
+          </p>
+        </div>
+      </div>
+      <div className="mt-6 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-3 sm:space-y-0 sm:space-x-reverse md:mt-0 md:flex-row md:space-x-3">
+      <div className="relative max-w-sm">
+          <input
+            placeholder="Buscar documentos"
+            value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+            onChange={(event) =>
+              table.getColumn("email")?.setFilterValue(event.target.value)
+            }
+            className="block w-full px-28 rounded-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm/6"
+          />
+          <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+        </div>
+        <SideFilter />
+      </div>
+    </div>
+    <div className="mt-6 border-b border-gray-200"/>
       <div className="flex items-center py-4">
-        <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                );
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div className="flex flex-row gap-3">
+          {titles.map((select,index) =>
+             <SelectMenus key={index} title={select.title} options={select.options}/>
+          )}
+        </div>
+        <NewDocument />
       </div>
       <div className="rounded-md border">
         <Table>
