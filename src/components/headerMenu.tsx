@@ -13,14 +13,14 @@ const navigation = [
   { name: 'Soluções', href: '#', current: true },
  
 ]
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
-export function CustomTrigger({ className }) {
+export function CustomTrigger({ className }: { className: string }) {
   const { toggleSidebar } = useSidebar();
   return (
     <button className={className} onClick={toggleSidebar}>
-      <Menu/>
+      <Menu />
     </button>
   );
 }
@@ -72,7 +72,6 @@ export default function Header() {
                   <span className="sr-only">View notifications</span>
                   
                 </button>
-
                 {/* Profile dropdown */}
                 <div className="relative ml-3">
                   <div>
