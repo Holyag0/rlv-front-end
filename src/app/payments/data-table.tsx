@@ -23,7 +23,7 @@ import{
 
 import { Button } from "@/components/ui/button"
 import {SelectMenus } from "@/components/select-menus"
-import { Search,Filter } from 'lucide-react';
+import { Search } from 'lucide-react';
 import SeedButton from '@/components/seedButton'
 
 interface DataTableProps<TData, TValue> {

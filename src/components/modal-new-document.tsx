@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FileUp,MoveRight } from 'lucide-react';
+import { FileUp } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 const Documents = () => {

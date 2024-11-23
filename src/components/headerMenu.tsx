@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import Epaper from '@/assets/e-paper.png'
-import { SidebarProvider,  useSidebar } from "@/components/ui/sidebar"
+import { useSidebar } from "@/components/ui/sidebar"
 import {LayoutGrid,Menu } from 'lucide-react'
 const user = {
   name: 'Tom Cook',
@@ -13,12 +13,6 @@ const navigation = [
   { name: 'Soluções', href: '#', current: true },
  
 ]
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
-]
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }

@@ -4,7 +4,6 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 
 export default function SideFilter() {
   const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
   const [documentType, setDocumentType] = useState('');
   const [emitente, setEmitente] = useState('');
   const [tributoValue, setTributoValue] = useState('');
