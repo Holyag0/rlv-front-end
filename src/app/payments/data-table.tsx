@@ -24,6 +24,7 @@ import{
 import { Button } from "@/components/ui/button"
 import {SelectMenus } from "@/components/select-menus"
 import { Search,Filter } from 'lucide-react';
+import SeedButton from '@/components/seedButton'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -169,6 +170,8 @@ export function DataTable<TData, TValue>({
         {table.getFilteredSelectedRowModel().rows.length} of{" "}
         {table.getFilteredRowModel().rows.length} row(s) selected.
       </div>
+      <SeedButton/>
     </div>
+    
   );
 }
