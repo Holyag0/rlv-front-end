@@ -15,6 +15,8 @@ const SeedButton: React.FC = () => {
           valor_tributo: 100.0,
           valor_liquido: 900.0,
           tipo: 'Tipo 1',
+          createAt: new Date('2024-10-12T00:00:00Z').toISOString(),
+          updateAt: new Date('2024-10-12T00:00:00Z').toISOString()
         }),
       });
 

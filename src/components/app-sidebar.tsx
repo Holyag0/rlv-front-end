@@ -11,7 +11,7 @@ import {
 const items = [
   {
     title: "Documentos",
-    url: "#",
+    url: "/documents",
     icon: FileText ,
   },
 ]

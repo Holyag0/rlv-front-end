@@ -1,29 +1,34 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Payment, columns } from "./columns";
+import { Document, columns } from "./columns";
 import { DataTable } from "./data-table";
 
-interface Document {
+interface Documents {
   id: string;
-  valor_tributo: number;
-  emitente: "pending" | "processing" | "success" | "failed";
   nome: string;
+  emitente: string;
+  valor_tributo: number;
+  valor_liquido:number,
+  createAt?:string,
+  updateAt?:string
 }
 
-async function getData(): Promise<Payment[]> {
+async function getData(): Promise<Document[]> {
   const response = await fetch(`${window.location.origin}/api/documents`);
-  const data: Document[] = await response.json();
+  const data: Documents[] = await response.json();
   return data.map((document) => ({
     id: document.id,
-    amount: document.valor_tributo,
-    status: document.emitente,
-    email: document.nome,
+    nome: document.nome,
+    valor_tributo: document.valor_tributo,
+    emitente: document.emitente,
+    valor_liquido: document.valor_liquido,
+    createAt: document.createAt ?? new Date().toISOString(), 
+    updateAt: document.updateAt ?? new Date().toISOString()  
   }));
 }
-
 const DemoPage: React.FC = () => {
-  const [data, setData] = useState<Payment[]>([]);
+  const [data, setData] = useState<Document[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -78,9 +78,9 @@ export function DataTable<TData, TValue>({
       <div className="relative max-w-sm">
           <input
             placeholder="Buscar documentos"
-            value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+            value={(table.getColumn("emitente")?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
-              table.getColumn("email")?.setFilterValue(event.target.value)
+              table.getColumn("emitente")?.setFilterValue(event.target.value)
             }
             className="block w-full px-28 rounded-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm/6"
           />
@@ -93,7 +93,7 @@ export function DataTable<TData, TValue>({
       <div className="flex items-center py-4">
         <div className="flex flex-row gap-3">
           {titles.map((select,index) =>
-             <SelectMenus key={index} title={select.title} options={select.options}/>
+            <SelectMenus key={index} title={select.title} options={select.options}/>
           )}
         </div>
         <NewDocument />
